@@ -1,0 +1,422 @@
+@font-face {
+    font-family: 'Almendra Display';
+    src: url('./Almendra Display-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --bg-color: #f0ede4;
+    --text-color: #121212;
+    --border-color: #000000;
+    --accent-color: #e50914;
+    --panel-bg: #ffffff;
+    --font-primary: 'Almendra Display', serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-primary);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px;
+    position: relative;
+    user-select: none;
+}
+
+/* Custom Cursors */
+body,
+a,
+button {
+    cursor: crosshair;
+}
+
+/* Header & Top Buttons */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    z-index: 100;
+}
+
+.controls-left {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+/* EXCEPTIONS: Rounded corner button styled per the sketch */
+.btn-rounded {
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    padding: 10px 24px;
+    font-family: var(--font-primary);
+    font-size: 3rem;
+    font-weight: bold;
+    border-radius: 9999px;
+    /* Rounded corner exception */
+    box-shadow: 2px 2px 0px var(--border-color);
+    transition: all 0.15s ease;
+}
+
+.btn-rounded:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px var(--border-color);
+}
+
+.btn-rounded:active {
+    transform: translate(0px, 0px);
+    box-shadow: 1px 1px 0px var(--border-color);
+}
+
+.title-center {
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+}
+
+/* 3D Carousel Slider Container */
+.slider-container {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 20px 0;
+    width: 100%;
+    height: 480px;
+    /* Slider container height */
+
+}
+
+.scene {
+    width: 100%;
+    height: 100%;
+    perspective: 35em;
+    /* 3D 원근감 35em 적용 */
+    display: grid;
+    place-content: center;
+    overflow: hidden;
+    /* 측면 페이드아웃 마스크 구현 */
+    mask: linear-gradient(90deg, #0000, red 20% 80%, #0000);
+    -webkit-mask: linear-gradient(90deg, #0000, red 20% 80%, #0000);
+}
+
+.a3d {
+    grid-area: 1/ 1;
+    display: grid;
+    place-self: center;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    /* 등속 회전 애니메이션 */
+    animation: ry 16s linear infinite;
+}
+
+.a3d:hover {
+    animation-play-state: paused;
+}
+
+/* y축 회전 애니메이션 */
+@keyframes ry {
+    to {
+        rotate: y 1turn
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .a3d {
+        animation-duration: 64s
+    }
+}
+
+.carousel-item {
+    /* 카드 기본 가로 크기 */
+    --w: 420px;
+    /* 카드 개수 분할 각도 */
+    --ba: 1turn/var(--n);
+    grid-area: 1/ 1;
+    /* 하나의 셀에 중첩 */
+    place-self: center;
+    /* a3d 내부 정중앙 정렬 */
+    width: var(--w);
+    height: 280px;
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    /* 1px 검정 보더 */
+    border-radius: 0 !important;
+    /* 직각 둥근 모서리 배제 */
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.15);
+    backface-visibility: hidden;
+    cursor: pointer;
+    transform:
+        rotatey(calc(var(--i)*var(--ba))) translatez(calc(-1.5 * (.5*var(--w) + 0.5em)/tan(.5*var(--ba))));
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0 !important;
+    /* 직각 */
+}
+
+
+
+/* Dock Layout & Controls */
+.dock-controls-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 8px;
+    z-index: 50;
+}
+
+/* macOS Dock styled as Brutalist Panel */
+.dock-wrapper {
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    /* Strict 1px border */
+    border-radius: 0 !important;
+    /* Square edges */
+    padding: 12px 20px;
+    display: flex;
+    align-items: flex-end;
+    box-shadow: 5px 5px 0px var(--border-color);
+    height: 78px;
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.dock {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 48px;
+    height: 48px;
+    transition: width 0.2s cubic-bezier(0.25, 1, 0.5, 1), height 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+    transform-origin: bottom center;
+}
+
+/* Dock Item Magnification states */
+.nav-item.hover {
+    width: 76px;
+    height: 76px;
+}
+
+.nav-item.sibling-close {
+    width: 62px;
+    height: 62px;
+}
+
+.nav-item.sibling-far {
+    width: 53px;
+    height: 53px;
+}
+
+.nav-link {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+/* The actual icon wrapper */
+.icon-box {
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 0 !important;
+    /* Square shapes */
+    background: #f7f6f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+/* Active app indicators (square dot) */
+.active-dot {
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    background: var(--border-color);
+    border-radius: 0;
+    /* Brutalist Square dot */
+}
+
+/* Tooltips */
+.nav-item__tooltip {
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: var(--text-color);
+    color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 0 !important;
+    /* Brutalist */
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    box-shadow: 2px 2px 0px var(--border-color);
+}
+
+.nav-item:hover .nav-item__tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* 3 Icon Set Element Styles */
+
+/* 1. Classic macOS (Rendered as stylized SVGs inside the box) */
+.mac-icon svg {
+    width: 60%;
+    height: 60%;
+    fill: none;
+    stroke: var(--text-color);
+    stroke-width: 2;
+    stroke-linecap: square;
+    stroke-linejoin: miter;
+}
+
+/* 2. Glassmorphic Glow */
+.glass-icon {
+    background: rgba(255, 255, 255, 0.4) !important;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.8), 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.glass-icon i {
+    font-size: 1.4rem;
+    color: var(--text-color);
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+}
+
+/* 3. Minimalist Neo-Brutalist (Bold solid fill on hover) */
+.brutal-icon {
+    background: #fff !important;
+    box-shadow: 3px 3px 0px var(--border-color);
+}
+
+.brutal-icon i {
+    font-size: 1.4rem;
+    font-weight: 900;
+}
+
+.nav-item.hover .brutal-icon {
+    background: var(--accent-color) !important;
+    color: white;
+    box-shadow: 5px 5px 0px var(--border-color);
+}
+
+/* Modal Info Panel */
+.info-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0;
+    padding: 32px;
+    width: 90%;
+    max-width: 480px;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 8px 8px 0px var(--border-color);
+}
+
+.info-modal.active {
+    opacity: 1;
+    pointer-events: all;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.info-modal h3 {
+    font-size: 2rem;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+.info-modal p {
+    font-size: 1.15rem;
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.modal-close {
+    background: var(--text-color);
+    color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    padding: 8px 20px;
+    font-family: var(--font-primary);
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 0;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
