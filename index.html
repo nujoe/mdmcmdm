@@ -1,123 +1,56 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neo-Brutalist Workspace & Carousel</title>
-    <!-- Remix Icons for Dock Set 2 and 3 -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
 </head>
 
 <body>
 
-    <!-- Header / Top Utilities -->
-    <header>
-        <div class="controls-left" style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;">
-            <!-- EXCEPTION: Rounded buttons per the user's sketch -->
-            <button class="btn-rounded" id="btnArchive">Archive</button>
-            <button class="btn-rounded" id="btnInfo">INFO</button>
-        </div>
-    </header>
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
 
-    <!-- 3D Carousel (Image Slider Container) -->
-    <main class="slider-container">
+    <input type="button" value="hello" onclick="m += 40; this.style.marginLeft = m + 'px';">
+    <input type="checkbox" value="hi" onclick="m += 40;">
+    <script>
+        let m = 0;
 
-        <div class="scene">
-            <div class="a3d" id="carousel" style="--n: 6;">
-                <!-- Slide Item 1 -->
-                <div class="carousel-item" style="--i: 0;" data-index="0">
-                    <img src="./assets/Screenshot 2026-05-26 at 16.32.44.png" alt="Screenshot 1">
-                </div>
-                <!-- Slide Item 2 -->
-                <div class="carousel-item" style="--i: 1;" data-index="1">
-                    <img src="./assets/Screenshot 2026-05-26 at 16.32.58.png" alt="Screenshot 2">
-                </div>
-                <!-- Slide Item 3 -->
-                <div class="carousel-item" style="--i: 2;" data-index="2">
-                    <img src="./assets/Screenshot 2026-05-26 at 16.33.13.png" alt="Screenshot 3">
-                </div>
-                <!-- Slide Item 4 -->
-                <div class="carousel-item" style="--i: 3;" data-index="3">
-                    <img src="./assets/Screenshot 2026-05-26 at 16.32.44.png" alt="Screenshot 1 Copy">
-                </div>
-                <!-- Slide Item 5 -->
-                <div class="carousel-item" style="--i: 4;" data-index="4">
-                    <img src="./assets/Screenshot 2026-05-26 at 16.32.58.png" alt="Screenshot 2 Copy">
-                </div>
-                <!-- Slide Item 6 -->
-                <div class="carousel-item" style="--i: 5;" data-index="5">
-                    <img src="./assets/Screenshot 2026-05-26 at 16.33.13.png" alt="Screenshot 3 Copy">
-                </div>
-            </div>
-        </div>
 
-    </main>
+        document.write(1 + 1);
+        document.write('hello');
 
-    <!-- Dock and theme selectors -->
-    <div class="dock-controls-container">
 
-        <!-- macOS Dock Wrapper -->
-        <div class="dock-wrapper">
-            <ul class="dock" id="dock">
-                <!-- Notion -->
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <div class="icon-box mac-icon">
-                            <!-- SVGs and markup updated via JS according to theme selection -->
-                        </div>
-                    </a>
-                    <span class="nav-item__tooltip">Notion</span>
-                    <span class="active-dot"></span>
-                </li>
-                <!-- Asana -->
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <div class="icon-box mac-icon"></div>
-                    </a>
-                    <span class="nav-item__tooltip">Asana</span>
-                </li>
-                <!-- Slack -->
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <div class="icon-box mac-icon"></div>
-                    </a>
-                    <span class="nav-item__tooltip">Slack</span>
-                    <span class="active-dot"></span>
-                </li>
-                <!-- Figma -->
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <div class="icon-box mac-icon"></div>
-                    </a>
-                    <span class="nav-item__tooltip">Figma</span>
-                </li>
-                <!-- Github -->
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <div class="icon-box mac-icon"></div>
-                    </a>
-                    <span class="nav-item__tooltip">GitHub</span>
-                    <span class="active-dot"></span>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Info Modal -->
-    <div class="modal-overlay" id="modalOverlay"></div>
-    <div class="info-modal" id="infoModal">
-        <h3>ALMENDRA WORKSPACE</h3>
-        <p>
-            Almendra Display 폰트를 이용해 세련되게 꾸민 브루탈리즘 워크스페이스입니다.
-            상단의 둥근 버튼을 제외하고는 모두 1px 블랙 보더와 직각(sharp edges) 레이아웃을 취하고 있습니다.
-            하단의 독 내비게이션 바에서 3가지 아이콘 요소 디자인을 마음껏 전환해 보세요.
-        </p>
-        <button class="modal-close" id="modalClose">닫기</button>
-    </div>
-
-    <script src="./script.js"></script>
+    </script>
 </body>
 
 </html>
